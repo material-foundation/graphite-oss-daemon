@@ -90,7 +90,7 @@ var repos_in_org = config.get('to_watch.repos_in_org');
 
 function run() {
   if (orgs.length > 0) {
-    new CronJob('15 15 * * * *', function() {
+    new CronJob('15 0,15,30,45 * * * *', function() {
       for (var i in orgs) {
         query_public_repos(orgs[i]);
       }
@@ -98,7 +98,7 @@ function run() {
   }
 
   if (repos_in_org.length > 0) {
-    new CronJob('15 45 * * * *', function() {
+    new CronJob('15 0,15,30,45 * * * *', function() {
       for (var i in repos_in_org) {
         github.repos.getForOrg({'org': repos_in_org[i]}, process_org_repos);
       }

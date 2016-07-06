@@ -1,3 +1,7 @@
+# 1.0.1
+
+- Increase polling frequency to every 15 minutes.
+
 # 1.0.0
 
 - Initial release.
