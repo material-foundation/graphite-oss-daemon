@@ -1,6 +1,7 @@
-# release-candidate
+# 1.0.1
 
- TODO: Enumerate changes.
+- Increase polling frequency to every 15 minutes.
+
 # 1.0.0
 
 - Initial release.
