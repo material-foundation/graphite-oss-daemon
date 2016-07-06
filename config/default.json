@@ -1,0 +1,9 @@
+{
+  "graphite": {
+    "server": {
+      "host": "localhost",
+      "data_port": 2003,
+      "web_port": 3500
+    }
+  }
+}
