@@ -1,5 +1,7 @@
 # Graphite Daemon for Open Source Projects
 
+A node.js daemon that gathers various forms of analytics and stores them in a graphite instance.
+
 ## Requirements
 
 - A running graphite instance that can be posted to by the machine running this daemon.
