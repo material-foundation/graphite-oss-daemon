@@ -87,6 +87,7 @@ function process_org_repos(err, res) {
 
 var orgs = config.get('to_watch.orgs');
 var repos_in_org = config.get('to_watch.repos_in_org');
+var repos = config.get('to_watch.repos');
 
 function run() {
   if (orgs.length > 0) {
@@ -104,6 +105,17 @@ function run() {
       }
     }, null, true, 'America/New_York');
   }
+
+  if (repos.length > 0) {
+    new CronJob('15 0,15,30,45 * * * *', function() {
+      for (var i in repos) {
+        var repoparts = repos[i].split('/');
+        github.repos.get({'user': repoparts[0], 'repo': repoparts[1]}, function(err, res) {
+          post_repo_stats(res);
+        });
+      }
+    }, null, true, 'America/New_York');
+  }
 }
 
 run();
@@ -115,4 +127,10 @@ for (var i in orgs) {
 }
 for (var i in repos_in_org) {
   github.repos.getForOrg({'org': repos_in_org[i]}, process_org_repos);
+}
+for (var i in repos) {
+  var repoparts = repos[i].split('/');
+  github.repos.get({'user': repoparts[0], 'repo': repoparts[1]}, function(err, res) {
+    post_repo_stats(res);
+  });
 }

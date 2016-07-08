@@ -4,14 +4,8 @@
     "secret": null
   },
   "to_watch": {
-    "orgs": [
-      "material-foundation",
-      "material-motion",
-      "google"
-    ],
-    "repos_in_org": [
-      "material-foundation",
-      "material-motion"
-    ]
+    "orgs": [],
+    "repos_in_org": [],
+    "repos": []
   }
 }
