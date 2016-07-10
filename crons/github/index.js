@@ -64,7 +64,9 @@ function post_repo_stats(repo) {
 
 function query_public_repos(org_name) {
   github.orgs.get({'org': org_name}, function(err, res) {
-    if (!err) {
+    if (err) {
+      console.log(err);
+    } else {
       post_org_stats(res);
     }
   });
@@ -72,6 +74,7 @@ function query_public_repos(org_name) {
 
 function process_org_repos(err, res) {
   if (err) {
+    console.log(err);
     return false;
   }
   
@@ -111,7 +114,11 @@ function run() {
       for (var i in repos) {
         var repoparts = repos[i].split('/');
         github.repos.get({'user': repoparts[0], 'repo': repoparts[1]}, function(err, res) {
-          post_repo_stats(res);
+          if (err) {
+            console.log(err);
+          } else {
+            post_repo_stats(res);
+          }
         });
       }
     }, null, true, 'America/New_York');
@@ -131,6 +138,10 @@ for (var i in repos_in_org) {
 for (var i in repos) {
   var repoparts = repos[i].split('/');
   github.repos.get({'user': repoparts[0], 'repo': repoparts[1]}, function(err, res) {
-    post_repo_stats(res);
+    if (err) {
+      console.log(err);
+    } else {
+      post_repo_stats(res);
+    }
   });
 }
